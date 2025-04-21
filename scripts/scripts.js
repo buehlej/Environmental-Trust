@@ -42,6 +42,32 @@ async function loadFonts() {
 }
 
 /**
+ * Builds two column grid.
+ * @param {Element} main The container element
+ */
+function buildLayoutContainer(main) {
+  main.querySelectorAll(':scope > .section[data-layout]').forEach((section) => {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('layout-wrapper');
+    const leftDiv = document.createElement('div');
+    leftDiv.classList.add('left-column');
+    const rightDiv = document.createElement('div');
+    rightDiv.classList.add('right-column');
+    let current = leftDiv;
+    [...section.children].forEach((child) => {
+      if (child.classList.contains('column-separator-wrapper')) {
+        current = rightDiv;
+        child.remove();
+        return;
+      }
+      current.append(child);
+    });
+    wrapper.append(leftDiv, rightDiv);
+    section.append(wrapper);
+  });
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
