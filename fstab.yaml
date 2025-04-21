@@ -1,4 +1,4 @@
 mountpoints:
   /:
-    url: https://content.da.live/buehlej/Environmental-Trust/
+    url: https://content.da.live/buehlej/environmental-trust/
     type: markup
